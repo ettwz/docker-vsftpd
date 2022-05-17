@@ -31,3 +31,7 @@ docker run --volume "/tmp/my_pem_file_dir:/etc/vsftpd/private" loicmathieu/vsftp
 Two volumes are defined :
 - /home/guest : the FTP data directory of the guest user (the only available by default)
 - /var/log/vsftpd : the log directory
+
+# UPDATE
+
+docker run -itd -p 30020:20 -p 30021:21 -p 30030-30040:30030-30040 -e FTP_USER=ftpUser -e FTP_PASS=ftpPassword -e PASV_ADDRESS=x.x.x.x -e PASV_MIN_PORT=30030 -e PASV_MAX_PORT=30040 -v /yourpath/vsftpd.pem:/etc/vsftpd/private/vsftpd.pem -v /yourpath/vsftpd.key:/etc/vsftpd/private/vsftpd.key --name ftpServer --restart=always ettwz/vsftpd ftps
